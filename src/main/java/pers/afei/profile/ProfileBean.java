@@ -4,23 +4,38 @@ import pers.afei.utils.Util;
 
 public class ProfileBean {
 
-    private String wifiName;
+    private String ssid;
     private String password;
     private String profile;
 
-    public ProfileBean(String name, String pwd) {
+    public ProfileBean(String ssid, String pwd) {
 
-        setWifiName(name);
+        setssid(ssid);
         setPassword(pwd);
+        setProfile();
+    }
 
-        if (pwd == null || pwd.equals("")) {
-            String prof = "<?xml version=\"1.0\"?>\r\n"
+
+    /**
+     * @return the profile
+     */
+    public String getProfile() {
+        return profile;
+    }
+
+    /**
+     * @param profile 根据ssid
+     */
+    public void setProfile() {
+
+        if (password == null || password.equals("")) {
+            profile = "<?xml version=\"1.0\"?>\r\n"
                 + "<WLANProfile xmlns=\"http://www.microsoft.com/networking/WLAN/profile/v1\">\r\n" 
-                + "    <name>" + wifiName + "</name>\r\n" 
+                + "    <name>" + ssid + "</name>\r\n" 
                 + "    <SSIDConfig>\r\n" 
                 + "        <SSID>\r\n" 
-                + "            <hex>" + Util.stringToHex(wifiName) + "</hex>\r\n" 
-                + "            <name>" + wifiName + "</name>\r\n"
+                + "            <hex>" + Util.stringToHex(ssid) + "</hex>\r\n" 
+                + "            <name>" + ssid + "</name>\r\n"
                 + "        </SSID>\r\n" 
                 + "    </SSIDConfig>\r\n" 
                 + "    <connectionType>ESS</connectionType>\r\n"
@@ -39,16 +54,14 @@ public class ProfileBean {
                 + "        <randomizationSeed>" + Util.getRandomizationSeed() + "</randomizationSeed>\r\n" 
                 + "    </MacRandomization>\r\n"
                 + "</WLANProfile>";
-
-            setProfile(prof);
         } else {
-            String prof = "<?xml version=\"1.0\"?>\r\n"
+            profile = "<?xml version=\"1.0\"?>\r\n"
                 + "<WLANProfile xmlns=\"http://www.microsoft.com/networking/WLAN/profile/v1\">\r\n" 
-                + "    <name>" + wifiName + "</name>\r\n" 
+                + "    <name>" + ssid + "</name>\r\n" 
                 + "    <SSIDConfig>\r\n" 
                 + "        <SSID>\r\n" 
-                + "            <hex>" + Util.stringToHex(wifiName) + "</hex>\r\n" 
-                + "            <name>" + wifiName + "</name>\r\n"
+                + "            <hex>" + Util.stringToHex(ssid) + "</hex>\r\n" 
+                + "            <name>" + ssid + "</name>\r\n"
                 + "        </SSID>\r\n" 
                 + "    </SSIDConfig>\r\n" 
                 + "    <connectionType>ESS</connectionType>\r\n"
@@ -72,24 +85,7 @@ public class ProfileBean {
                 + "        <randomizationSeed>" + Util.getRandomizationSeed() + "</randomizationSeed>\r\n" 
                 + "    </MacRandomization>\r\n"
                 + "</WLANProfile>";
-
-            setProfile(prof);
         }
-    }
-
-
-    /**
-     * @return the profile
-     */
-    public String getProfile() {
-        return profile;
-    }
-
-    /**
-     * @param profile the profile to set
-     */
-    public void setProfile(String profile) {
-        this.profile = profile;
     }
 
     /**
@@ -107,17 +103,17 @@ public class ProfileBean {
     }
 
     /**
-     * @return the wifiName
+     * @return the ssid
      */
-    public String getWifiName() {
-        return wifiName;
+    public String getSsid() {
+        return ssid;
     }
 
     /**
-     * @param wifiName the wifiName to set
+     * @param ssid the ssid to set
      */
-    public void setWifiName(String wifiName) {
-        this.wifiName = wifiName;
+    public void setssid(String ssid) {
+        this.ssid = ssid;
     }
 
 }
