@@ -1,5 +1,7 @@
 package pers.afei.wificracker;
 
+import java.io.File;
+
 /************************************************************
  *                    _ooOoo_
  *                   o8888888o
@@ -29,6 +31,8 @@ public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        Cracker cracker = new Cracker();
+        String dicPath = new File("").getAbsolutePath() + "\\dictionary\\common-0.txt";
+        cracker.violentCrack("飝龘龘", dicPath, 400);
     }
 }
