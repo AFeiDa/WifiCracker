@@ -1,5 +1,7 @@
 package pers.afei.utils;
 
+import pers.afei.profile.ProfileBean;
+
 public class Util {
 
     /**
@@ -28,12 +30,32 @@ public class Util {
      * @return long 随机种子
      */
     public static long getRandomizationSeed() {
-        long t = System.currentTimeMillis();
+        long t = System.currentTimeMillis() % 4294967296L + 1;
         return t;
     }
 
+    /**
+     * 生成wlan配置文件并存入path
+     * @param ssid
+     * @param password
+     * @param path
+     */
+    public static void generator(String ssid, String password, String path) {
+        // FileOperation.createFile(path);
+        ProfileBean profile = new ProfileBean(ssid, password);
+        FileOperation.overwriteFile(path, profile.getProfile());
+    }
+
+    /**
+     * 生成wlan配置文件并存入固定目录下
+     * @param ssid
+     * @param password
+     */
+    public static void generator(String ssid, String password) {
+        generator(ssid, password, "C:\\profiles\\WLAN-" + ssid + ".xml");
+    }
+
     public static void main(String[] args) {
-        String string = "哈哈";
-        System.out.println(stringToHex(string));
+        generator("飝龘龘", "asdfghjkl");
     }
 }
