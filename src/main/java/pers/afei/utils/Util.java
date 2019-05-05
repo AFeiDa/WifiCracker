@@ -34,6 +34,7 @@ public class Util {
         return t;
     }
 
+    private final static ProfileBean PROFILE_BEAN = new ProfileBean("", "");
     /**
      * 生成wlan配置文件并存入path
      * @param ssid
@@ -41,9 +42,10 @@ public class Util {
      * @param path
      */
     public static void generator(String ssid, String password, String path) {
-        // FileOperation.createFile(path);
-        ProfileBean profile = new ProfileBean(ssid, password);
-        FileOperation.overwriteFile(path, profile.getProfile());
+        PROFILE_BEAN.setssid(ssid);
+        PROFILE_BEAN.setPassword(password);
+        PROFILE_BEAN.setProfile();
+        FileOperation.overwriteFile(path, PROFILE_BEAN.getProfile());
     }
 
     /**
@@ -54,6 +56,7 @@ public class Util {
     public static void generator(String ssid, String password) {
         generator(ssid, password, "C:\\profiles\\WLAN-" + ssid + ".xml");
     }
+
 
     public static void main(String[] args) {
         generator("飝龘龘", "asdfghjkl");
