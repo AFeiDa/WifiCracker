@@ -26,7 +26,8 @@
             "name": "CodeLens (Launch) - App",
             "request": "launch",
             "mainClass": "pers.afei.wificracker.App",
-            "projectName": "wificracker"
+            "projectName": "wificracker",
+            "console": "integratedTerminal"
         }
     ]
 }

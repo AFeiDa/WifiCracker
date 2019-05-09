@@ -16,7 +16,7 @@ public class Util {
         byte[] bytes = string.getBytes();
         int bit;
         for (int i = 0; i < bytes.length; i++) {
-            bit = (bytes[i] & 0x0f0) >> 4;
+            bit = (bytes[i] & 0xf0) >> 4;
             hex.append(chars[bit]);
             bit = bytes[i] & 0x0f;
             hex.append(chars[bit]);
@@ -24,6 +24,42 @@ public class Util {
         return hex.toString();
     }
 
+    /**
+     * 传入一个十六进制字符串，转换为普通字符串
+     * @param hexStr
+     * @return String
+     */
+    public static String hexToString(String hexStr) {
+
+        String bits = "0123456789ABCDEF";
+
+        byte[] string = new byte[hexStr.length() >> 1];
+        byte[] bytes = hexStr.getBytes();
+
+        int bit = 0;
+        for(int i = 0; i < string.length; ++ i) {
+            bit = (bits.indexOf(bytes[i<<1]) << 4) + bits.indexOf(bytes[i<<1|1]);
+            string[i] = (byte) (bit & 0xff);
+        }
+        
+        return new String(string);        
+    }
+
+    /**
+     * 传入一个串，判断是不是十六进制串
+     * @param hex
+     * @return boolean
+     */
+    public static boolean isHex(String hex) {
+        final String BIT = "0123456789ABCDEF"; 
+        boolean ret = true;
+        int l = hex.length();
+        for(int i = 0; i < l; ++ i) {
+            ret &= !(BIT.indexOf(hex.charAt(i)) == -1);
+        }
+        return ret;
+    }
+        
     /**
      * 根据当前时间生成随机种子
      * 
@@ -59,6 +95,8 @@ public class Util {
 
 
     public static void main(String[] args) {
-        generator("飝龘龘", "asdfghjkl");
+        String a = "ABC", b = "飝龘龘";
+        System.out.println(isHex(a));
+        System.out.println(isHex(b));
     }
 }
