@@ -69,12 +69,13 @@ public class Cracker {
                     }
                 }
 
+                FileOperation.deleteFile(wlanPath);
+
                 if(flag) {
                     System.out.println("破解成功！！！wlan " + ssid + " 的密码是 " + pwd);
                     break;
                 } else {
                     cmdExecer.exec(Command.DELETE_PROFILE + ssid);
-                    FileOperation.deleteFile(wlanPath);
                 }
             }
 
