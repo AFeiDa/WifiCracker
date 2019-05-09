@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - DicGenerator",
+            "request": "launch",
+            "mainClass": "pers.afei.wificracker.DicGenerator",
+            "projectName": "wificracker"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Util",
             "request": "launch",
             "mainClass": "pers.afei.utils.Util",
