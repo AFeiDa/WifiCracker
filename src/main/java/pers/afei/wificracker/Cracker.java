@@ -1,6 +1,7 @@
 package pers.afei.wificracker;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -73,6 +74,7 @@ public class Cracker {
 
                 if(flag) {
                     System.out.println("破解成功！！！wlan " + ssid + " 的密码是 " + pwd);
+                    FileOperation.appendToFile(new File("").getAbsolutePath() + "//password//password.txt", "SSID:" + ssid + "\tpassword:" + pwd);
                     break;
                 } else {
                     cmdExecer.exec(Command.DELETE_PROFILE + ssid);
